@@ -7,10 +7,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits.basemap import Basemap
 import pandas as pd
+from decouple import config
 
 # Global variables
-my_secret = os.environ['api_key']
-api_key = my_secret[2:-1]
+os.environ['API_KEY'] = 'bRq78semcp0aCbNf5JXRiKa2hvl03XuGWsE7caMG'
+
+# Access environment variables
+api_key = os.getenv('API_KEY')
+print(api_key)
 headers = {'Accept': 'application/json'}
 year = "2022"
 
@@ -27,6 +31,7 @@ def fetch_data(url):
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         return response.json()
+    print(response)
     return None
 
 # Function to store data in MongoDB
@@ -43,7 +48,6 @@ def fetch_and_store_arrest_data(arrest_collection):
   
 # Function to calculate total arrests and most common crime
 def analyze_arrest_data(data):
-    data = data['data'][0]
     total_crimes = sum(value for key, value in data.items() if key != 'data_year')
     most_common_crime = max((key, value) for key, value in data.items() if key != 'data_year')
     return total_crimes, most_common_crime
@@ -113,6 +117,7 @@ def main():
   # Fetch and store arrest data
   arrest_data = fetch_and_store_arrest_data(ArrestData)
 
+  print(arrest_data)
   if arrest_data:
       # Analyze arrest data
       total_crimes, most_common_crime = analyze_arrest_data(arrest_data['data'][0])
