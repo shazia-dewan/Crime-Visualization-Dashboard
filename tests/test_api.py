@@ -3,8 +3,11 @@ import requests_mock
 import pytest
 import os
 
-api_key = os.environ['api_key']
-api_key = api_key[2:-1]
+# Global variables
+os.environ['API_KEY'] = 'bRq78semcp0aCbNf5JXRiKa2hvl03XuGWsE7caMG'
+
+# Access environment variables
+api_key = os.getenv('API_KEY')
 headers = {'Accept': 'application/json'}
 
 def test_collect_arrest_data():
