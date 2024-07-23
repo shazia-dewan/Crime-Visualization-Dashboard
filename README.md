@@ -7,9 +7,9 @@
 3. pip install -r requirements.txt
 
 4. Install mongoDB docker image
-   -docker pull mongo:latest
-   -docker run -d -p 27017:27017 --name mongodb mongo:latest
+    - docker pull mongo:latest
+    - docker run -d -p 27017:27017 --name mongodb mongo:latest
 
-5. Run the databse script (Do this only once)
-   -Python backend/database.py 
+6. Run the databse script (Do this only once)
+    - Python backend/database.py 
 
