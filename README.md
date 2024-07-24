@@ -11,5 +11,8 @@
     - docker run -d -p 27017:27017 --name mongodb mongo:latest
 
 6. Run the databse script (Do this only once)
-    - Python backend/database.py 
+    - Python backend/database.py
+
+To run the Pytests go to tests directory and type
+    - pytest <test name>
 
