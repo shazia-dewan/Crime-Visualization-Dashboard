@@ -11,11 +11,13 @@ year = "2022"
 
 # MongoDB connection setup
 def setup_database():
-    myclient = pymongo.MongoClient(
-        "mongodb+srv://shaziadewan:123@cluster77.uwhpj3s.mongodb.net/?retryWrites=true&w=majority&appName=Cluster77"
-    )
-    mydb = myclient["CrimeDatabase"]
-    return mydb["CrimeCollection"], mydb["RobberyData"], mydb["HomicideData"]
+    try:
+        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+        mydb = myclient["CrimeDatabase"]
+        return mydb["CrimeCollection"], mydb["RobberyData"], mydb["HomicideData"]
+    except pymongo.errors.ServerSelectionTimeoutError as err:
+        print(f"Failed to connect to server: {err}")
+        return None, None, None
 
 def fetch_data(url):
     response = requests.get(url, headers=headers)

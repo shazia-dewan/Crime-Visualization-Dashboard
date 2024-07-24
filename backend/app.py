@@ -6,8 +6,10 @@ import os
 import pymongo
 import requests
 from mpl_toolkits.basemap import Basemap
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Global variables
 os.environ['API_KEY'] = 'bRq78semcp0aCbNf5JXRiKa2hvl03XuGWsE7caMG'
@@ -17,13 +19,19 @@ year = "2022"
 
 # MongoDB connection setup
 def setup_database():
-    myclient = pymongo.MongoClient(
-        "mongodb+srv://shaziadewan:123@cluster77.uwhpj3s.mongodb.net/?retryWrites=true&w=majority&appName=Cluster77"
-    )
-    mydb = myclient["CrimeDatabase"]
-    return mydb["CrimeCollection"], mydb["RobberyData"], mydb["HomicideData"]
+    try:
+        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+        mydb = myclient["CrimeDatabase"]
+        return mydb["CrimeCollection"], mydb["RobberyData"], mydb["HomicideData"]
+    except pymongo.errors.ServerSelectionTimeoutError as err:
+        print(f"Failed to connect to server: {err}")
+        return None, None, None
 
 ArrestData, RobberyData, HomicideData = setup_database()
+
+if ArrestData is None or RobberyData is None or HomicideData is None:
+    print("Database connection failed. Exiting...")
+    exit(1)
 
 # Fetch data from MongoDB
 def fetch_data_from_db(collection):
@@ -39,12 +47,13 @@ def test():
 def get_pie_chart():
     data = fetch_data_from_db(ArrestData)
     if data:
-        crime_data = data['data'][0]  # Assuming you want the data for the first year entry
+        data.pop('_id', None)
+        data.pop('data_year', None)
         types_crimes = []
         crime_num = []
         
         # Extracting and sorting crime types by number of offenses
-        sorted_crimes = sorted(crime_data.items(), key=lambda item: item[1], reverse=True)
+        sorted_crimes = sorted(data.items(), key=lambda item: item[1], reverse=True)
         
         for key, value in sorted_crimes:
             if key != 'data_year' and len(types_crimes) < 7:
@@ -64,6 +73,7 @@ def get_pie_chart():
 @app.route('/api/plot/bar')
 def get_bar_chart():
     data = fetch_data_from_db(RobberyData)
+    print(data)
     if data:
         # Remove the '_id' key from the data
         data.pop('_id', None)
