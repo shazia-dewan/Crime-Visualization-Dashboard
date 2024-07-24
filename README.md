@@ -14,5 +14,5 @@
     - Python backend/database.py
 
 To run the Pytests go to tests directory and type
-    - Pytest **name of test**
+    - pytest **name of test**
 
