@@ -1,38 +1,69 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
   background-color: #001f3f;
   color: #ffffff;
-  min-height: 100vh;
+}
+
+.App {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-h1 {
-  margin-bottom: 20px;
+.App-header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.App-footer {
+  margin-top: 40px;
+  text-align: center;
 }
 
 .charts-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  width: 80%;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .chart-container {
-  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-card {
+  width: 100%;
+  background-color: #112d4e;
+  border: none;
   border-radius: 10px;
-  padding: 20px;
-  color: #000000;
+}
+
+.chart-card .card-body {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.chart-container img {
+.chart-image {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+
 

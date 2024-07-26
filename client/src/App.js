@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
 function App() {
   const [pieChart, setPieChart] = useState(null);
@@ -31,31 +32,58 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Crime Visualization Dashboard</h1>
+    <Container className="App">
+      <header className="App-header">
+        <h1>Crime Visualization Dashboard</h1>
+        <Button variant="primary" onClick={() => window.location.reload()}>
+          Refresh Charts
+        </Button>
+      </header>
       <div className="charts-grid">
         <div className="chart-container">
-          <h2>Pie Chart</h2>
-          {pieChart && <img src={pieChart} alt="Pie Chart" />}
+          <Card className="chart-card">
+            <Card.Body>
+              <Card.Title>Pie Chart</Card.Title>
+              {pieChart && <img src={pieChart} alt="Pie Chart" className="chart-image" />}
+            </Card.Body>
+          </Card>
         </div>
         <div className="chart-container">
-          <h2>Bar Chart</h2>
-          {barChart && <img src={barChart} alt="Bar Chart" />}
+          <Card className="chart-card">
+            <Card.Body>
+              <Card.Title>Bar Chart</Card.Title>
+              {barChart && <img src={barChart} alt="Bar Chart" className="chart-image" />}
+            </Card.Body>
+          </Card>
         </div>
         <div className="chart-container">
-          <h2>Heatmap</h2>
-          {heatmap && <img src={heatmap} alt="Heatmap" />}
+          <Card className="chart-card">
+            <Card.Body>
+              <Card.Title>Heatmap</Card.Title>
+              {heatmap && <img src={heatmap} alt="Heatmap" className="chart-image" />}
+            </Card.Body>
+          </Card>
         </div>
         <div className="chart-container">
-          <h2>Line Chart</h2>
-          {lineChart && <img src={lineChart} alt="Line Chart" />}
+          <Card className="chart-card">
+            <Card.Body>
+              <Card.Title>Line Chart</Card.Title>
+              {lineChart && <img src={lineChart} alt="Line Chart" className="chart-image" />}
+            </Card.Body>
+          </Card>
         </div>
       </div>
-    </div>
+      <footer className="App-footer">
+        <p>© 2024 Crime Visualization Dashboard</p>
+      </footer>
+    </Container>
   );
 }
 
 export default App;
+
+
+
 
 
 
