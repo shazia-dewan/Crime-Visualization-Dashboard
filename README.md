@@ -1,5 +1,7 @@
 # Crime Visualization Dashboard
 
+![Dashboard Screenshot](images/dash.png)
+
 ## Prerequisites
 
 - Python 3.10
