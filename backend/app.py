@@ -7,9 +7,13 @@ import pymongo
 import requests
 from mpl_toolkits.basemap import Basemap
 from flask_cors import CORS
+import matplotlib
+matplotlib.use('Agg') 
+from flask_cors import cross_origin
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
+
 
 # Global variables
 os.environ['API_KEY'] = 'bRq78semcp0aCbNf5JXRiKa2hvl03XuGWsE7caMG'
@@ -38,12 +42,17 @@ def fetch_data_from_db(collection):
     data = collection.find_one()
     return data
 
+@app.route('/')
+def index():
+    return 'Welcome to the backend!'
+
 @app.route('/test')
 def test():
     print("here")
     return {"hello":"there"}
 
 @app.route('/api/plot/pie')
+@cross_origin(origin='http://localhost:3000')
 def get_pie_chart():
     data = fetch_data_from_db(ArrestData)
     if data:

@@ -13,10 +13,10 @@ function App() {
     const fetchCharts = async () => {
       try {
         const [pieResponse, barResponse, heatmapResponse, lineResponse] = await Promise.all([
-          axios.get('http://localhost:5000/api/plot/pie', { responseType: 'blob' }),
-          axios.get('http://localhost:5000/api/plot/bar', { responseType: 'blob' }),
-          axios.get('http://localhost:5000/api/plot/heatmap', { responseType: 'blob' }),
-          axios.get('http://localhost:5000/api/plot/line', { responseType: 'blob' }),
+          axios.get('http://127.0.0.1:5000/api/plot/pie', { responseType: 'blob' }),
+          axios.get('http://127.0.0.1:5000/api/plot/bar', { responseType: 'blob' }),
+          axios.get('http://127.0.0.1:5000/api/plot/heatmap', { responseType: 'blob' }),
+          axios.get('http://127.0.0.1:5000/api/plot/line', { responseType: 'blob' }),
         ]);
 
         setPieChart(URL.createObjectURL(pieResponse.data));
