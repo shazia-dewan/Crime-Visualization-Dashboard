@@ -1,6 +1,6 @@
 # Crime Visualization Dashboard
 
-![Dashboard Screenshot](images/screenshot.png)
+![Dashboard Screenshot](images/dash.png)
 
 ## Prerequisites
 
