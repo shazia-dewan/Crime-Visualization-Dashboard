@@ -1,6 +1,6 @@
 # Crime Visualization Dashboard
 
-<img src="images/screenshot.png" alt="Dashboard Screenshot" width="400"/>
+![Dashboard Screenshot](images/screenshot.png)
 
 ## Prerequisites
 
