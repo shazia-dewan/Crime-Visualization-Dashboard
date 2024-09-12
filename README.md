@@ -7,6 +7,20 @@
 
 ## Setup
 
+### MongoDB Setup
+
+1. Pull the latest MongoDB Docker image:
+
+    ```sh
+    docker pull mongo:latest
+    ```
+
+2. Run MongoDB in a Docker container:
+
+    ```sh
+    docker run -d -p 27017:27017 --name mongodb mongo:latest
+    ```
+
 ### Backend Setup
 
 1. Install a virtual environment:
@@ -27,34 +41,49 @@
     pip install -r requirements.txt
     ```
 
-### MongoDB Setup
-
-1. Pull the latest MongoDB Docker image:
-
-    ```sh
-    docker pull mongo:latest
-    ```
-
-2. Run MongoDB in a Docker container:
-
-    ```sh
-    docker run -d -p 27017:27017 --name mongodb mongo:latest
-    ```
-
 3. Run the database script (do this only once):
 
     ```sh
     python backend/database.py
     ```
 
-### Running the Application
+3. Run the flask backend:
+
+    ```sh
+    cd backend
+    python app.py
+    ```
+
+### Frontend Setup
+
+2. Navigate to frontend:
+
+    ```sh
+    cd frontend
+    ```
+
+3. Install dependencies:
+
+    ```sh
+    npm install
+    ```
+
+3. Start the React App:
+
+    ```sh
+    npm start
+    ```    
+
+    
+
+### Running the Application Docker (optional)
 
 1. Build and run the Docker containers:
 
     ```sh
     docker-compose up --build
     ```
-
+    
 2. Access the React frontend at [http://localhost:3000](http://localhost:3000).
 
 3. Access the Flask API endpoints at [http://localhost:5000](http://localhost:5000).
